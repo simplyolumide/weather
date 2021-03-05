@@ -1,23 +1,17 @@
+FROM node:12.18.3
 
-
-# Step 1
-
-FROM node:10-alpine as build-step
-
-RUN mkdir /app
+LABEL version="1.0"
+LABEL description="This is the base docker image for the Tweet Sentiment Analysis frontend react app."
+LABEL maintainer = ["danielmurph8@gmail.com", "dylanedwards290@gmail.com"]
 
 WORKDIR /app
 
-COPY package.json /app
+COPY ["package.json", "package-lock.json", "./"]
 
-RUN npm install
+RUN npm install --production
 
-COPY . /app
+COPY . .
 
-RUN npm run build
+EXPOSE 3000
 
-# Stage 2
-
-FROM nginx:1.17.1-alpine
-
-COPY --from=build-step /app/build /usr/share/nginx/html
+CMD ["npm", "start"]
