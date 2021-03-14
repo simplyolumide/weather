@@ -19,7 +19,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Build container image
-        run: docker build -t docker_fake_repo/tutorial-api:$(echo $GITHUB_SHA | head -c7) .
+        run: docker build -t wusi24/arvorepo:$(echo $GITHUB_SHA | head -c7) .
 
       - name: Docker Login
         env:
