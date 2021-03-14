@@ -28,7 +28,7 @@ jobs:
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
       - name: Push image to Docker Hub
-        run: docker push wusi24/arvorepo
+        run: docker push wusi24/arvorepo:latest
 
       - name: Update deployment file
         run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|wusi24/arvorepo:'${TAG}'|' $GITHUB_WORKSPACE/deployment.yml
