@@ -19,7 +19,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Build container image
-        run: docker build -t wusi24/arvorepo:$(echo $GITHUB_SHA | head -c7) .
+        run: docker build -t wusi24/tutorial-api:$(echo $GITHUB_SHA | head -c7) .
 
       - name: Docker Login
         env:
@@ -28,10 +28,10 @@ jobs:
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
       - name: Push image to Docker Hub
-        run: docker push wusi24/arvorepo:latest
+        run: docker push wusi24/tutorial-api
 
       - name: Update deployment file
-        run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|wusi24/arvorepo:'${TAG}'|' $GITHUB_WORKSPACE/deployment.yml
+        run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|wusi24/tutorial-api:'${TAG}'|' $GITHUB_WORKSPACE/deployment.yml
 
       - name: Replace Environment Variables
         uses: danielr1996/envsubst-action@1.0.0
