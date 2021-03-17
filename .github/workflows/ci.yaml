@@ -11,6 +11,6 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.0.0
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "weather"
+          heroku_app_name: "oloyemeji"
           heroku_email: "olumide_adewusi@yahoo.com"
           usedocker: true
